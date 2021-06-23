@@ -23,4 +23,38 @@ let autos = [
     }
 ]
 
+function completarAuto(marca, modelo, color, anio, km, precio, cuotas, patente, vendido) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.color = color;
+    this.anio = anio;
+    this.km = km;
+    this.precio = precio;
+    this.cuotas = cuotas;
+    this.patente = patente;
+    this.vendido = vendido;
+} // no sirvió pero puede ser útil para registrar nuevos autos, intenté usarla en buscarAuto
+// función constructora
+
+
+let concesionaria = {
+    autos: autos,
+
+    buscarAuto: function (patenteIng) {
+        let resultado = null;
+        autos.filter(function (elemento) {
+            switch (elemento.patente) {
+                case patenteIng:
+                    resultado = resultado + elemento;
+                    break;
+                default:
+                    resultado = null;
+            }
+        })
+        return resultado;
+    },
+}
+
+console.log(concesionaria.buscarAuto("JJK116"));
+
 module.exports = autos;
