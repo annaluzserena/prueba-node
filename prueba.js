@@ -45,11 +45,7 @@ let concesionaria = {
         autos.filter(function (elemento) {
             switch (elemento.patente) {
                 case patenteIng:
-                    let indice = autos.indexOf(elemento);
-                    let elementoReal = autos[indice];
-                    for (var property in elementoReal) {
-                        resultado += property + ": " + elementoReal[property];
-                    };
+                    return elemento;
                     break;
                 default:
                     resultado = null;
@@ -57,7 +53,7 @@ let concesionaria = {
         })
         return resultado;
     },
-    
+
 }
 
 console.log(concesionaria.buscarAuto("JJK116"));
