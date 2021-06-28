@@ -41,21 +41,47 @@ let concesionaria = {
     autos: autos,
 
     buscarAuto: function (patenteIng) {
-        let resultado = undefined;
-        autos.filter(function (elemento) {
+        let resultado = null;
+        autos.forEach(function (elemento) {
             switch (elemento.patente) {
                 case patenteIng:
-                    return elemento;
+                    resultado = elemento;
                     break;
-                default:
+                case !patenteIng:
                     resultado = null;
+                    break;
             }
         })
         return resultado;
     },
 
+    venderAuto: function (patenteIng) {
+        let buscarPatente = this.buscarAuto(patenteIng);
+        buscarPatente.vendido = true;
+        return buscarPatente;
+    },
+
+    autosParaLaVenta: function () {
+        let filtrado = this.autos.filter(function (elemento) {
+            return elemento.vendido == false;
+        });
+        return filtrado;
+    },
+
+    autosNuevos: function () {
+        let autosSinVender = this.autosParaLaVenta();
+        let autos0km = autosSinVender.filter(function (elemento) {
+            return elemento.km == 0;
+        });
+        return autos0km;
+    },
+
+    listaDeVentas: function () {
+        
+    }
+
 }
 
-console.log(concesionaria.buscarAuto("JJK116"));
+console.log(concesionaria.autosNuevos());
 
 module.exports = autos;
