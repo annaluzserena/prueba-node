@@ -8,7 +8,7 @@ let autos = [
         precio: 150000,
         cuotas: 12,
         patente: "APL123",
-        vendido: false
+        vendido: true
     },
     {
         marca: "Toyota",
@@ -19,7 +19,7 @@ let autos = [
         precio: 100000,
         cuotas: 14,
         patente: "JJK116",
-        vendido: false
+        vendido: true
     }
 ]
 
@@ -77,11 +77,50 @@ let concesionaria = {
     },
 
     listaDeVentas: function () {
-        
+        let precios = [];
+        for (let i = 0; i < this.autos.length; i++) {
+            switch ((autos[i]).vendido) {
+                case true:
+                    precios.push(autos[i].precio);
+                    break;
+                default:
+                    precios.push(0);
+            }
+        }
+        return precios;
+    },
+
+    totalDeVentas: function () {
+        let precios = this.listaDeVentas();
+        let total = precios.reduce(function (acumulador, valor) {
+            return acumulador + valor;
+        });
+        return total;
+    },
+
+    puedeComprar: function (auto, persona) {
+        if (persona.capacidadDePagoEnCuotas > auto.precio / auto.cuotas && auto.precio < persona.capacidadDePagoTotal) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    autosQuePuedeComprar: function (persona) {
+        let autosParaLaVenta = this.autosParaLaVenta();
+        let puedeComprar = [];
+        for (let i = 0; i < autosParaLaVenta.length; i++) {
+            if (this.puedeComprar(autosParaLaVenta[i], persona) == true) {
+                puedeComprar.push(autosParaLaVenta[i]);
+            }
+        }
+        return puedeComprar;
     }
 
 }
 
-console.log(concesionaria.autosNuevos());
+
+
+console.log(concesionaria.totalDeVentas());
 
 module.exports = autos;
