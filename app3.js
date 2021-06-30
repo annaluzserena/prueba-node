@@ -130,44 +130,8 @@ let desaprobados = estudiantess.filter(function (indice) {
     return estudiantess[estudiantess.indexOf(indice)].aprobado === false;
 })
 
-console.log();
+console.log(desaprobados);
 
-let autosb = [
-    {
-        marca: "Ford",
-        modelo: "Fiesta",
-        color: "Azul",
-        anio: 2019,
-        km: 200,
-        precio: 150000,
-        cuotas: 12,
-        patente: "APL123",
-        vendido: false
-    },
-    {
-        marca: "Toyota",
-        modelo: "Corolla",
-        color: "Blanco",
-        anio: 2019,
-        km: 0,
-        precio: 100000,
-        cuotas: 14,
-        patente: "JJK116",
-        vendido: false
-    }
-]
 
-const concesionaria =
-{
-    miFuncion: function buscar(patentes) {
-        let objeto = autos.indexOf(patentes);
-        autos[objeto].vendido.replace(false, true);
-    }
-},
-{
-    autos: autosb,
-}
-console.log(concesionaria.miFuncion("JJK116"));
 
-module.exports = autosb;
 
